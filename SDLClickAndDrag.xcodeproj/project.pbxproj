@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		6A3E52F116FFB9A200233C5F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E52F016FFB9A200233C5F /* main.cpp */; };
 		6A3E52F316FFB9A200233C5F /* SDLClickAndDrag.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6A3E52F216FFB9A200233C5F /* SDLClickAndDrag.1 */; };
+		6A3E52FA16FFB9C100233C5F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3E52F916FFB9C100233C5F /* Cocoa.framework */; };
+		6A3E52FC16FFB9D100233C5F /* SDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3E52FB16FFB9D100233C5F /* SDL.framework */; };
+		6A3E52FE16FFB9E300233C5F /* SDL_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3E52FD16FFB9E200233C5F /* SDL_ttf.framework */; };
+		6A3E530016FFB9F100233C5F /* SDL_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3E52FF16FFB9F100233C5F /* SDL_image.framework */; };
+		6A3E530316FFBA1900233C5F /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E530216FFBA1900233C5F /* SDLMain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +33,12 @@
 		6A3E52ED16FFB9A200233C5F /* SDLClickAndDrag */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDLClickAndDrag; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A3E52F016FFB9A200233C5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6A3E52F216FFB9A200233C5F /* SDLClickAndDrag.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SDLClickAndDrag.1; sourceTree = "<group>"; };
+		6A3E52F916FFB9C100233C5F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		6A3E52FB16FFB9D100233C5F /* SDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL.framework; path = ../../../../../Library/Frameworks/SDL.framework; sourceTree = "<group>"; };
+		6A3E52FD16FFB9E200233C5F /* SDL_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_ttf.framework; path = ../../../../../Library/Frameworks/SDL_ttf.framework; sourceTree = "<group>"; };
+		6A3E52FF16FFB9F100233C5F /* SDL_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL_image.framework; path = ../../../../../Library/Frameworks/SDL_image.framework; sourceTree = "<group>"; };
+		6A3E530116FFBA1900233C5F /* SDLMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDLMain.h; path = ../../SDLMain.h; sourceTree = "<group>"; };
+		6A3E530216FFBA1900233C5F /* SDLMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDLMain.m; path = ../../SDLMain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3E530016FFB9F100233C5F /* SDL_image.framework in Frameworks */,
+				6A3E52FE16FFB9E300233C5F /* SDL_ttf.framework in Frameworks */,
+				6A3E52FC16FFB9D100233C5F /* SDL.framework in Frameworks */,
+				6A3E52FA16FFB9C100233C5F /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +59,10 @@
 		6A3E52E416FFB9A200233C5F = {
 			isa = PBXGroup;
 			children = (
+				6A3E52FF16FFB9F100233C5F /* SDL_image.framework */,
+				6A3E52FD16FFB9E200233C5F /* SDL_ttf.framework */,
+				6A3E52FB16FFB9D100233C5F /* SDL.framework */,
+				6A3E52F916FFB9C100233C5F /* Cocoa.framework */,
 				6A3E52EF16FFB9A200233C5F /* SDLClickAndDrag */,
 				6A3E52EE16FFB9A200233C5F /* Products */,
 			);
@@ -60,6 +79,8 @@
 		6A3E52EF16FFB9A200233C5F /* SDLClickAndDrag */ = {
 			isa = PBXGroup;
 			children = (
+				6A3E530116FFBA1900233C5F /* SDLMain.h */,
+				6A3E530216FFBA1900233C5F /* SDLMain.m */,
 				6A3E52F016FFB9A200233C5F /* main.cpp */,
 				6A3E52F216FFB9A200233C5F /* SDLClickAndDrag.1 */,
 			);
@@ -118,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A3E52F116FFB9A200233C5F /* main.cpp in Sources */,
+				6A3E530316FFBA1900233C5F /* SDLMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +206,7 @@
 		6A3E52F716FFB9A200233C5F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -191,6 +214,7 @@
 		6A3E52F816FFB9A200233C5F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
