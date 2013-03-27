@@ -1,5 +1,5 @@
 //
-//  SDLBasic.h
+//  SDL_Basic.h
 //  SDLClickAndDrag
 //
 //  Created by Maribeth Rauh on 3/27/13.
@@ -17,8 +17,8 @@
 //  functionality every SDL program will have.
 //
 
-#ifndef __SDLClickAndDrag__SDLBasic__
-#define __SDLClickAndDrag__SDLBasic__
+#ifndef __SDLClickAndDrag__SDL_Basic__
+#define __SDLClickAndDrag__SDL_Basic__
 
 #include <iostream>
 #include <string>
@@ -26,13 +26,13 @@
 #include "SDL_image/SDL_image.h"
 #include "SDL_ttf/SDL_ttf.h"
 
-class SDLBasic {
+class SDL_Basic {
     public:
-        SDLBasic(int = 640, int = 480, int = 32);
+        SDL_Basic(int = 640, int = 480, int = 32);
         SDL_Surface *load_file(std::string);    //takes single filename, returns surface; opens a font
         SDL_Surface *load_image(std::string);   //takes single filename, loads image, optimizes it to screen and returns it
         void apply_surface(int, int, SDL_Surface *, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
-        SDL_Surface *init(SDL_Surface *, std::string);  //sets up screen and caption at at the top of the screen, returns the screen
+        SDL_Surface *init(std::string);  //sets up screen and caption at at the top of the screen, returns the screen
         void clean_up();
     
     private:
@@ -42,4 +42,4 @@ class SDLBasic {
 };
 
 
-#endif /* defined(__SDLClickAndDrag__SDLBasic__) */
+#endif /* defined(__SDLClickAndDrag__SDL_Basic__) */

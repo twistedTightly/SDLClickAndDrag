@@ -1,21 +1,21 @@
 //
-//  SDLBasic.cpp
+//  SDL_Basic.cpp
 //  SDLClickAndDrag
 //
 //  Created by Maribeth Rauh on 3/27/13.
 //  Copyright (c) 2013 Maribeth Rauh. All rights reserved.
 //
 
-#include "SDLBasic.h"
+#include "SDL_Basic.h"
 
-SDLBasic::SDLBasic(int width, int height, int bpp) {
+SDL_Basic::SDL_Basic(int width, int height, int bpp) {
     SCREEN_WIDTH = width;
     SCREEN_HEIGHT = height;
     SCREEN_BPP = bpp;
 }
 
 //takes single filename, returns surface; opens a font
-SDL_Surface * SDLBasic::load_file( std::string filename ) {
+SDL_Surface * SDL_Basic::load_file( std::string filename ) {
     //Load the image
     SDL_Surface * newImage = load_image( filename );
     
@@ -27,7 +27,7 @@ SDL_Surface * SDLBasic::load_file( std::string filename ) {
 }
 
 //takes single filename, loads image, optimizes it to screen and returns it
-SDL_Surface * SDLBasic::load_image( std::string filename ) {
+SDL_Surface * SDL_Basic::load_image( std::string filename ) {
     SDL_Surface *loadedImage = NULL;
     SDL_Surface *optimizedImage = NULL;
     
@@ -54,7 +54,7 @@ SDL_Surface * SDLBasic::load_image( std::string filename ) {
 //Parameter 4: image being blitted onto
 //Parameter 5: which clip of source to blit
 //blits image to destination at (x, y)
-void SDLBasic::apply_surface( int x, int y, SDL_Surface *source, SDL_Surface *destination, SDL_Rect * clip) {
+void SDL_Basic::apply_surface( int x, int y, SDL_Surface *source, SDL_Surface *destination, SDL_Rect * clip) {
     SDL_Rect offset;
     
     offset.x = x;
@@ -65,12 +65,12 @@ void SDLBasic::apply_surface( int x, int y, SDL_Surface *source, SDL_Surface *de
 }
 
 //sets up screen and caption at at the top of the screen, returns the screen
-SDL_Surface * SDLBasic::init(SDL_Surface * screen, std::string title) {
+SDL_Surface * SDL_Basic::init(std::string title) {
     //Initialize all SDL subsystems
     if( SDL_Init( SDL_INIT_EVERYTHING ) == -1 ) return NULL;
     
     //Set up the screen
-    screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
+    SDL_Surface *screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE );
     
     //If there was an error in setting up the screen
     if( screen == NULL ) return NULL;
@@ -85,7 +85,7 @@ SDL_Surface * SDLBasic::init(SDL_Surface * screen, std::string title) {
     return screen;
 }
 
-void SDLBasic::clean_up() {
+void SDL_Basic::clean_up() {
     //Free the images in the main/another function call here
     //SDL_FreeSurface( screen );
     
