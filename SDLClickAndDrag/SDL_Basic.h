@@ -33,15 +33,23 @@ class SDL_Basic {
         SDL_Surface *load_file(std::string);    //takes single filename, returns surface; opens a font
         SDL_Surface *load_image(std::string);   //takes single filename, loads image, optimizes it to screen and returns it
     
-        void apply_surface(int, int, SDL_Surface *, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
+        SDL_Rect apply_surface(int, int, SDL_Surface *, SDL_Rect ,SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
+        SDL_Rect createRect(SDL_Surface *); //creates an SDL_Rect that corresponds to an image (SDL_Surface)
+        void updateRect(int, int);
+        bool mouseOverImage(SDL_Rect, int, int);
     
         SDL_Surface *init(std::string);  //sets up screen and caption at at the top of the screen, returns the screen
         void clean_up();
+    
+//        void setUpSnapRegion();
+//        void showSnapRegion();
     
     private:
         int SCREEN_WIDTH;
         int SCREEN_HEIGHT;
         int SCREEN_BPP;
+    
+        SDL_Rect snapRegion;
 };
 
 

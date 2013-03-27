@@ -49,19 +49,42 @@ SDL_Surface * SDL_Basic::load_image( std::string filename ) {
     return optimizedImage;
 }
 
+//creates an SDL_Rect that corresponds to an image (SDL_Surface)
+SDL_Rect SDL_Basic::createRect(SDL_Surface * image) {
+    SDL_Rect rect;
+    rect.w = image->w;
+    rect.h = image->h;
+    
+    // will be updated when apply_surface called
+    rect.x = NULL;
+    rect.y = NULL;
+    
+    return rect;
+}
+
 //Parameters 1, 2: x and y coordinates indicating where image will be blitted
 //Parameter 3: image to be blitted
 //Parameter 4: image being blitted onto
 //Parameter 5: which clip of source to blit
 //blits image to destination at (x, y)
-void SDL_Basic::apply_surface( int x, int y, SDL_Surface *source, SDL_Surface *destination, SDL_Rect * clip) {
-    SDL_Rect offset;
+SDL_Rect SDL_Basic::apply_surface( int x, int y, SDL_Surface *source, SDL_Rect offset, SDL_Surface *destination, SDL_Rect * clip) {
+    offset.x+=x;
+    offset.y+=y;
     
-    offset.x = x;
-    offset.y = y;
+    // changes x and y image is being blitted at if image's center point is over a snap region
+    //offset = snapToLocation(offset);
     
     SDL_BlitSurface( source, clip, destination, &offset );
-    return;
+    return offset;
+}
+
+bool SDL_Basic::mouseOverImage(SDL_Rect imageRect, int x, int y) {
+    //check if mouse coordinates are within the bounds of the rect that corresponds to the image
+    if (x > imageRect.x && x < (imageRect.x + imageRect.w) && y > imageRect.y && y < (imageRect.y + imageRect.h)) {
+        return true;
+    }else{
+        return false;
+    }
 }
 
 //sets up screen and caption at at the top of the screen, returns the screen
