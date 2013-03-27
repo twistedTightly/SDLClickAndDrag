@@ -12,6 +12,8 @@ SDL_Basic::SDL_Basic(int width, int height, int bpp) {
     SCREEN_WIDTH = width;
     SCREEN_HEIGHT = height;
     SCREEN_BPP = bpp;
+    
+    
 }
 
 //takes single filename, returns surface; opens a font
@@ -78,13 +80,42 @@ SDL_Rect SDL_Basic::apply_surface( int x, int y, SDL_Surface *source, SDL_Rect o
     return offset;
 }
 
+//checks if the mouse coordinates are within the bounds of the rect that corresponds to the image
 bool SDL_Basic::mouseOverImage(SDL_Rect imageRect, int x, int y) {
-    //check if mouse coordinates are within the bounds of the rect that corresponds to the image
     if (x > imageRect.x && x < (imageRect.x + imageRect.w) && y > imageRect.y && y < (imageRect.y + imageRect.h)) {
         return true;
     }else{
         return false;
     }
+}
+
+void SDL_Basic::setUpSnapRegion(int x, int y, SDL_Surface *screen) {
+    snapImage = createBlankSurface(NULL, 70, 120, screen);
+    
+    snapRegion.x = x;
+    snapRegion.y = y;
+    // next two not necessarily needed
+    snapRegion.w = snapImage->w;
+    snapRegion.h = snapImage->h;
+    
+    SDL_FillRect( snapImage, NULL, SDL_MapRGB( snapImage->format, 0xCC, 0xCC, 0xCC ) );
+    return;
+}
+
+// credit: http://www.cplusplus.com/forum/general/9063/
+SDL_Surface* SDL_Basic::createBlankSurface(Uint32 flags, int width, int height, const SDL_Surface* screen) {
+    // 'display' is the surface whose format you want to match
+    //  if this is really the display format, then use the surface returned from SDL_SetVideoMode
+    
+    const SDL_PixelFormat& fmt = *(screen->format);
+    return SDL_CreateRGBSurface(flags, width, height,
+                                fmt.BitsPerPixel,
+                                fmt.Rmask,fmt.Gmask,fmt.Bmask,fmt.Amask );
+}
+
+void SDL_Basic::applySnapRegion() {
+    SDL_FillRect( snapImage, NULL, SDL_MapRGB( snapImage->format, 0xCC, 0xCC, 0xCC ) );
+    return;
 }
 
 //sets up screen and caption at at the top of the screen, returns the screen

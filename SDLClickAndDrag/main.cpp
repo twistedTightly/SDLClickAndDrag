@@ -31,8 +31,13 @@ int main( int argc, char* args[] ) // MUST use these arguments and return type f
     
     //Fill the screen white
     SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) );
+        
+    // Create area an image will snap to if its center point enters said area
+    project.setUpSnapRegion(100, 100, screen);
+    
     // Initial screen displayed
     if (SDL_Flip(screen) == -1) return 1;
+
     
     
     bool mousePressedOnImage = false;
@@ -57,8 +62,11 @@ int main( int argc, char* args[] ) // MUST use these arguments and return type f
                 //int x = event.motion.x;
                 //int y = event.motion.y;
                 //std::cout << x << ", " << y << std::endl;
+                
                 // Fill the screen white
                 SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) );
+                // Reapply snap region image
+                project.applySnapRegion();
                 // Reapply image
                 imageRect = project.apply_surface(x, y, image, imageRect, screen, NULL);
                                 

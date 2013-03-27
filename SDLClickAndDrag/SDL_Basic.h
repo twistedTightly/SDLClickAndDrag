@@ -41,8 +41,9 @@ class SDL_Basic {
         SDL_Surface *init(std::string);  //sets up screen and caption at at the top of the screen, returns the screen
         void clean_up();
     
-//        void setUpSnapRegion();
-//        void showSnapRegion();
+        void setUpSnapRegion(int, int, SDL_Surface *);
+        SDL_Surface* createBlankSurface(Uint32 flags, int width, int height, const SDL_Surface* screen);
+        void applySnapRegion();
     
     private:
         int SCREEN_WIDTH;
@@ -50,6 +51,7 @@ class SDL_Basic {
         int SCREEN_BPP;
     
         SDL_Rect snapRegion;
+        SDL_Surface *snapImage;
 };
 
 
