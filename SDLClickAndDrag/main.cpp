@@ -6,13 +6,15 @@
 //  Copyright (c) 2013 Maribeth Rauh. All rights reserved.
 //
 
+#include "SDL/SDL.h"
+#include "SDL_image/SDL_image.h"
+#include "SDL_ttf/SDL_ttf.h"
 #include <iostream>
+#include <string>
 
-int main(int argc, const char * argv[])
+int main( int argc, char* args[] ) // MUST use these arguments and return type for main when using SDL
 {
-
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    
     return 0;
 }
 
