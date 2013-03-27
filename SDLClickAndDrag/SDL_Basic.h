@@ -29,9 +29,12 @@
 class SDL_Basic {
     public:
         SDL_Basic(int = 640, int = 480, int = 32);
+    
         SDL_Surface *load_file(std::string);    //takes single filename, returns surface; opens a font
         SDL_Surface *load_image(std::string);   //takes single filename, loads image, optimizes it to screen and returns it
+    
         void apply_surface(int, int, SDL_Surface *, SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
+    
         SDL_Surface *init(std::string);  //sets up screen and caption at at the top of the screen, returns the screen
         void clean_up();
     

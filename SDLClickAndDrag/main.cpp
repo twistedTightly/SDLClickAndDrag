@@ -27,6 +27,13 @@ int main( int argc, char* args[] ) // MUST use these arguments and return type f
     SDL_Surface *image = project.load_file("foo.png");
     if (image == NULL) return 1;
     
+    //Fill the screen white
+    SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) );
+    // Initial screen displayed
+    if (SDL_Flip(screen) == -1) return 1;
+    
+    
+    bool mousePressed = false;
     while (!quit) {
 
         // Processes events while events are in the queue
@@ -35,9 +42,17 @@ int main( int argc, char* args[] ) // MUST use these arguments and return type f
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
                 quit = true;
             }else if (event.type == SDL_MOUSEBUTTONDOWN) { //If mouse was pressed
+                mousePressed = true;
+            }else if (event.type == SDL_MOUSEBUTTONUP) {
+                mousePressed = false;
+            }else if (event.type == SDL_MOUSEMOTION && mousePressed) {
                 int x = event.motion.x;
                 int y = event.motion.y;
-                std::cout << x << ", " << y << std::endl;
+                
+                project.apply_surface(x, y, image, screen, NULL);
+                
+                //Update Screen
+                if (SDL_Flip( screen ) == -1) return 1;
             }
         }
     }
