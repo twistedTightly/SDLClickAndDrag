@@ -16,19 +16,37 @@
 int main( int argc, char* args[] ) // MUST use these arguments and return type for main when using SDL
 {
     SDL_Basic project; // Instantiated so basic SDL methods developed in SDL_Basic can be accessed
+    SDL_Event event;
     bool quit = false; // While loop condition initialized
     
-    // Init screen and check it worked
+    // Inits screen and checks it worked
     SDL_Surface *screen = project.init("Click and Drag");
     if (screen == NULL) return 1;
     
-    // Get image loaded from file
+    // Gets image loaded from file
     SDL_Surface *image = project.load_file("foo.png");
     if (image == NULL) return 1;
     
     while (!quit) {
-        quit = true;
+
+        // Processes events while events are in the queue
+        while (SDL_PollEvent( &event )) {
+            
+            if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
+                quit = true;
+            }else if (event.type == SDL_MOUSEBUTTONDOWN) { //If mouse was pressed
+                int x = event.motion.x;
+                int y = event.motion.y;
+                std::cout << x << ", " << y << std::endl;
+            }
+        }
     }
+    
+    
+    // Clean up at end of program
+    SDL_FreeSurface(image);
+    SDL_FreeSurface(screen);
+    project.clean_up();
     
     return 0;
 }
