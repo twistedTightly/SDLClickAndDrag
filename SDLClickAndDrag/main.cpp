@@ -37,11 +37,12 @@ int main( int argc, char* args[] ) // MUST use these arguments and return type f
     while (!quit) {
 
         // Processes events while events are in the queue
+        // Use switch case eventually?
         while (SDL_PollEvent( &event )) {
             
             if (event.type == SDL_QUIT) {   // If user clicks 'x' in top left corner
                 quit = true;
-            }else if (event.type == SDL_MOUSEBUTTONDOWN) { //If mouse was pressed
+            }else if (event.type == SDL_MOUSEBUTTONDOWN) { // If mouse was pressed down
                 mousePressed = true;
             }else if (event.type == SDL_MOUSEBUTTONUP) {
                 mousePressed = false;
@@ -49,9 +50,12 @@ int main( int argc, char* args[] ) // MUST use these arguments and return type f
                 int x = event.motion.x;
                 int y = event.motion.y;
                 
+                // Fill the screen white
+                SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) );
+                // Reapply image
                 project.apply_surface(x, y, image, screen, NULL);
                 
-                //Update Screen
+                // Update Screen
                 if (SDL_Flip( screen ) == -1) return 1;
             }
         }
