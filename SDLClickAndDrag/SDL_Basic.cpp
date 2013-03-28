@@ -48,6 +48,8 @@ SDL_Surface * SDL_Basic::load_image( std::string filename ) {
         }
     }
     
+    blocks.push_front(optimizedImage);
+    
     return optimizedImage;
 }
 
@@ -58,8 +60,8 @@ SDL_Rect SDL_Basic::createRect(SDL_Surface * image) {
     rect.h = image->h;
     
     // will be updated when apply_surface called
-    rect.x = NULL;
-    rect.y = NULL;
+    rect.x = 70-image->w;
+    rect.y = 70-image->h;
     
     return rect;
 }
@@ -73,11 +75,22 @@ SDL_Rect SDL_Basic::apply_surface( int x, int y, SDL_Surface *source, SDL_Rect o
     offset.x+=x;
     offset.y+=y;
     
-    // changes x and y image is being blitted at if image's center point is over a snap region
-    //offset = snapToLocation(offset);
-    
     SDL_BlitSurface( source, clip, destination, &offset );
     return offset;
+}
+
+// checks if image's associated rect is over a snap region, adjusting the offsets if it is
+SDL_Rect SDL_Basic::snapToLocation(SDL_Rect rect) {
+    int centerX = rect.x+(rect.w/2);
+    int centerY = rect.y+(rect.h/2);
+    std::cout << "In snapToLocation" << std::endl;
+    if (centerX > snapRegion.x && centerX < snapRegion.x+snapRegion.w && centerY > snapRegion.y && centerY < snapRegion.y+snapRegion.h) {
+        rect.x = snapRegion.x;
+        rect.y = snapRegion.y;
+        std::cout << "Snapping" << std::endl;
+    }
+    
+    return rect;
 }
 
 //checks if the mouse coordinates are within the bounds of the rect that corresponds to the image
