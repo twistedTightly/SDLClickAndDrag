@@ -99,6 +99,7 @@ void SDL_Basic::setUpSnapRegion(int x, int y, SDL_Surface *screen) {
     snapRegion.h = snapImage->h;
     
     SDL_FillRect( snapImage, NULL, SDL_MapRGB( snapImage->format, 0xCC, 0xCC, 0xCC ) );
+    apply_surface(x, y, snapImage, snapRegion, screen, NULL);
     return;
 }
 
@@ -113,8 +114,8 @@ SDL_Surface* SDL_Basic::createBlankSurface(Uint32 flags, int width, int height, 
                                 fmt.Rmask,fmt.Gmask,fmt.Bmask,fmt.Amask );
 }
 
-void SDL_Basic::applySnapRegion() {
-    SDL_FillRect( snapImage, NULL, SDL_MapRGB( snapImage->format, 0xCC, 0xCC, 0xCC ) );
+void SDL_Basic::applySnapRegion(SDL_Surface * screen) {
+    apply_surface(snapRegion.x, snapRegion.y, snapImage, snapRegion, screen, NULL);
     return;
 }
 

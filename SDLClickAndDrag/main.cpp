@@ -23,15 +23,15 @@ int main( int argc, char* args[] ) // MUST use these arguments and return type f
     SDL_Surface *screen = project.init("Click and Drag");
     if (screen == NULL) return 1;
     
+    //Fill the screen white
+    SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) );
+    
     // Gets image loaded from file
     SDL_Surface *image = project.load_file("foo.png");
     if (image == NULL) return 1;
     SDL_Rect imageRect = project.createRect(image);
     project.apply_surface(50, 50, image, imageRect, screen, NULL);
-    
-    //Fill the screen white
-    SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) );
-        
+
     // Create area an image will snap to if its center point enters said area
     project.setUpSnapRegion(100, 100, screen);
     
@@ -66,7 +66,7 @@ int main( int argc, char* args[] ) // MUST use these arguments and return type f
                 // Fill the screen white
                 SDL_FillRect( screen, &screen->clip_rect, SDL_MapRGB( screen->format, 0xFF, 0xFF, 0xFF ) );
                 // Reapply snap region image
-                project.applySnapRegion();
+                project.applySnapRegion(screen);
                 // Reapply image
                 imageRect = project.apply_surface(x, y, image, imageRect, screen, NULL);
                                 

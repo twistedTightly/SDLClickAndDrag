@@ -43,7 +43,7 @@ class SDL_Basic {
     
         void setUpSnapRegion(int, int, SDL_Surface *);
         SDL_Surface* createBlankSurface(Uint32 flags, int width, int height, const SDL_Surface* screen);
-        void applySnapRegion();
+        void applySnapRegion(SDL_Surface *);
     
     private:
         int SCREEN_WIDTH;
