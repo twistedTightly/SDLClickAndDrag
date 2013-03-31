@@ -37,7 +37,6 @@ class SDL_Basic {
     
         SDL_Rect apply_surface(int, int, SDL_Surface *, SDL_Rect ,SDL_Surface *, SDL_Rect *); //blits image to destination at (x, y)
         SDL_Rect createRect(SDL_Surface *); //creates an SDL_Rect that corresponds to an image (SDL_Surface)
-        void updateRect(int, int);
         SDL_Rect snapToLocation(SDL_Rect); // checks if image's associated rect is over a snap region, adjusting the offsets if it is
         bool mouseOverImage(SDL_Rect, int, int);
     
