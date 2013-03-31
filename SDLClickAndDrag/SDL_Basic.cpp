@@ -60,8 +60,8 @@ SDL_Rect SDL_Basic::createRect(SDL_Surface * image) {
     rect.h = image->h;
     
     // will be updated when apply_surface called
-    rect.x = 70-image->w;
-    rect.y = 70-image->h;
+    rect.x = 0;
+    rect.y = 0;
     
     return rect;
 }
@@ -74,6 +74,7 @@ SDL_Rect SDL_Basic::createRect(SDL_Surface * image) {
 SDL_Rect SDL_Basic::apply_surface( int x, int y, SDL_Surface *source, SDL_Rect offset, SDL_Surface *destination, SDL_Rect * clip) {
     offset.x+=x;
     offset.y+=y;
+    //std::cout << "Rect at: " << offset.x << ", " << offset.y << std::endl;
     
     SDL_BlitSurface( source, clip, destination, &offset );
     return offset;
@@ -83,6 +84,7 @@ SDL_Rect SDL_Basic::apply_surface( int x, int y, SDL_Surface *source, SDL_Rect o
 SDL_Rect SDL_Basic::snapToLocation(SDL_Rect rect) {
     int centerX = rect.x+(rect.w/2);
     int centerY = rect.y+(rect.h/2);
+    std::cout << "center " << centerX << ", " << centerY << std::endl;
     std::cout << "In snapToLocation" << std::endl;
     if (centerX > snapRegion.x && centerX < snapRegion.x+snapRegion.w && centerY > snapRegion.y && centerY < snapRegion.y+snapRegion.h) {
         rect.x = snapRegion.x;
@@ -95,6 +97,7 @@ SDL_Rect SDL_Basic::snapToLocation(SDL_Rect rect) {
 
 //checks if the mouse coordinates are within the bounds of the rect that corresponds to the image
 bool SDL_Basic::mouseOverImage(SDL_Rect imageRect, int x, int y) {
+    std::cout << "mouse: " << x << ", " << y << " rect: " << imageRect.x << ", " << imageRect.y << std::endl;
     if (x > imageRect.x && x < (imageRect.x + imageRect.w) && y > imageRect.y && y < (imageRect.y + imageRect.h)) {
         return true;
     }else{
